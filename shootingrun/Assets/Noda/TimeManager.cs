@@ -17,7 +17,6 @@ class TimeManager : MonoBehaviour
     /// 分
     /// </summary>
     public float min { get; set; }
-    [SerializeField] GameObject time = null;
     void Start()
     {
         second = 0.0f;

@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Singleton;
 using UnityEngine;
 
-class HPManager : MonoBehaviour
+class HPManager : SingletonMonoBehaviour<HPManager>
 {
-    private TimeManager tm;
-    private ScoreManager sm;
     /// <summary>
     /// プレイヤーのライフポイント
     /// </summary>
     public int _hp = 5;
     void Start()
     {
-        tm = GetComponent<TimeManager>();
-        sm = GetComponent<ScoreManager>();
         _hp = 3;
     }//hpの初期化
 
@@ -22,10 +19,10 @@ class HPManager : MonoBehaviour
         _hp -= damage;
         if (_hp <= 0)
         {
-            float m = (tm.min * 60);
-            tm._finishTime = tm.second + m;
-            int i = (int)tm._finishTime;
-            sm.Score += i;
+            float m = (TimeManager.Instance.min * 60);
+            TimeManager.Instance._finishTime = TimeManager.Instance.second + m;
+            int i = (int)TimeManager.Instance._finishTime;
+            ScoreManager.Instance.Score += i;
         }//HPが０になったらタイムをScoreに加算
     }//ダメージを受けたときにhpを減らす
 }

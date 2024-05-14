@@ -17,13 +17,11 @@ class TimeManager : MonoBehaviour
     /// 分
     /// </summary>
     public float min { get; set; }
-    TimeText tt;
     [SerializeField] GameObject time = null;
     void Start()
     {
         second = 0.0f;
         min = 0;
-        tt = GameObject.FindAnyObjectByType<TimeText>();
     }//時間の初期化
     
     void Update()

@@ -6,7 +6,7 @@ using UnityEngine;
 class ScoreManager : MonoBehaviour
 {
     /// <summary>
-    /// 合計Score
+    /// 合計のScore
     /// </summary>
     public int Score { get; set; }
     void Start()

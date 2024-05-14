@@ -4,22 +4,23 @@ using UnityEngine;
 
 class HPManager : MonoBehaviour
 {
-    
+    private TimeManager tm;
+    private ScoreManager sm;
     /// <summary>
     /// プレイヤーのライフポイント
     /// </summary>
     public int _hp = 5;
     void Start()
     {
+        tm = GetComponent<TimeManager>();
+        sm = GetComponent<ScoreManager>();
         _hp = 3;
     }//hpの初期化
 
     void Damage(int damage)
     {
-        TimeManager tm = GetComponent<TimeManager>();
-        ScoreManager sm = GetComponent<ScoreManager>();
         _hp -= damage;
-        if (_hp == 0)
+        if (_hp <= 0)
         {
             float m = (tm.min * 60);
             tm._finishTime = tm.second + m;

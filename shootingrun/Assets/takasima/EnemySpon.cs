@@ -45,9 +45,9 @@ public class EnemySpon : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(updownenemeysponspeed);
-            float x = Random.Range(10f, 10f);
-            float y = Random.Range(-3f, 0f);
-            Vector2 pos = new Vector2(x, y);
+            //float x = Random.Range(10f, 10f);
+            //float y = Random.Range(-3f, 0f);
+            Vector2 pos = new Vector2(10f, 0f);
             Instantiate(UpDownEnemey, pos, Quaternion.identity);
         }
     }

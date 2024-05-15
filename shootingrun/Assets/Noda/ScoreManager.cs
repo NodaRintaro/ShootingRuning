@@ -1,0 +1,22 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Singleton;
+using UnityEngine;
+
+class ScoreManager : SingletonMonoBehaviour<ScoreManager>
+{
+    /// <summary>
+    /// 合計のScore
+    /// </summary>
+    public int Score { get; set; }
+    void Start()
+    {
+        Score = 0;
+    }//Scoreの初期化
+
+    public void Hit(int enemyPoint)
+    {
+        Score += enemyPoint;
+    }//Enemy撃破時にScoreを加算する
+}

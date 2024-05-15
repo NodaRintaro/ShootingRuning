@@ -18,7 +18,12 @@ public class UIManager : MonoBehaviour
     GameObject _LifeGageFront;
     List<Life> _lifes = new();
     int _lifesCount;
+    ///<summary>Lifeの値が変化した時参照する値</summary>
     int _oldLifeValue;
+    ///<summary>Scoreの値が変化した時参照する値</summary>
+    int _oldScoreValue;
+    ///<summary>Scoreの変化量に対して一定時間で補間する時に使う値</summary>
+    int _ScoreValueDiff;
     Life _life;
     void Start()
     {
@@ -26,6 +31,7 @@ public class UIManager : MonoBehaviour
         _lifeGageBack = _lifeGage.transform.Find("LifeGageBack").gameObject;
         _LifeGageFront = _lifeGage.transform.Find("LifeGageFront").gameObject;
         _oldLifeValue = _gameManagerSample.MaxLife;
+        _oldScoreValue = _gameManagerSample.Score;
         while (_lifeGageBack.transform.childCount <= _gameManagerSample.MaxLife)
         {
             Instantiate(_lifeBuckground, _lifeGageBack.transform);
@@ -41,7 +47,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         TextDraw();
-        if(_gameManagerSample.Life < _oldLifeValue)
+        if (_gameManagerSample.Life < _oldLifeValue)
         {
             Damage();
             _oldLifeValue--;
@@ -51,6 +57,14 @@ public class UIManager : MonoBehaviour
             Recover();
             _oldLifeValue++;
         }//Lifeが増えた時
+        if (_oldScoreValue != _gameManagerSample.Score)
+        {
+            ScoreInterpolation();
+            if(_ScoreValueDiff != _gameManagerSample.Score)
+            {
+                _ScoreValueDiff = _gameManagerSample.Score;
+            }
+        }
     }
 
     void Damage()
@@ -65,11 +79,23 @@ public class UIManager : MonoBehaviour
         _life.HeartPlus();
     }
 
+    void ScoreInterpolation()
+    {
+        if (_oldScoreValue < _gameManagerSample.Score)
+        {
+            _oldScoreValue += (int)(Time.deltaTime *(_ScoreValueDiff));
+        }
+        else if (_oldScoreValue >= _gameManagerSample.Score)
+        {
+            _oldScoreValue = _gameManagerSample.Score;
+        }
+    }//スコアの変化を補間
     void TextDraw()
     {
         //score表示0埋め６桁（スコア　000000）
-        _scoreText.text = $"スコア {_gameManagerSample.Score:000000}";
+        _scoreText.text = $"スコア {_oldScoreValue:000000}";
         //time表示0埋め２桁（タイム　00:00）
         _timeText.text = $"タイム　{_gameManagerSample.Time:00}:{(int)(_gameManagerSample.Time % 1 * 100):00}";
+
     }
 }

@@ -34,7 +34,6 @@ public class GameManagerSample : MonoBehaviour
     [SerializeField] int score = 100000;
     [SerializeField] float time = 0;
 
-
     void Update()
     {
         Time += UnityEngine.Time.deltaTime;

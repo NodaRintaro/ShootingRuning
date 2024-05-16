@@ -9,6 +9,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     Vector2 _transformposition;
     float _timer;
+    float _HpEnemey;
+    [Header("Hpをどのぐらい減少させるかの値"), SerializeField] int _MinusHp = 1;
+    [Header("スコアにプラスする値"), SerializeField] int _PlusScoer = 5;
+    private HPManager _hpMg;
+    private ScoreManager _score;
     // Start is called before the first frame update
     
     void Start()
@@ -28,5 +33,19 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
         //行き過ぎたら消す
+
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _hpMg._hp = 1; 
+        }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            _score.Score = _PlusScoer;
+            Destroy(this.gameObject);
+        }
+    }
+
 }

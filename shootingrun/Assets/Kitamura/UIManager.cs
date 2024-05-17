@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
         _LifeGageFront = _lifeGage.transform.Find("LifeGageFront").gameObject;
         _oldLifeValue = _gameManagerSample.MaxLife;
         _oldScoreValue = _gameManagerSample.Score;
+        _ScoreValueDiff = _gameManagerSample.Score;
         while (_lifeGageBack.transform.childCount <= _gameManagerSample.MaxLife)
         {
             Instantiate(_lifeBuckground, _lifeGageBack.transform);
@@ -59,11 +60,11 @@ public class UIManager : MonoBehaviour
         }//Lifeが増えた時
         if (_oldScoreValue != _gameManagerSample.Score)
         {
-            ScoreInterpolation();
             if(_ScoreValueDiff != _gameManagerSample.Score)
             {
                 _ScoreValueDiff = _gameManagerSample.Score;
             }
+            ScoreInterpolation();
         }
     }
 

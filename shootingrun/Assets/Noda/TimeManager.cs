@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Singleton;
 using UnityEngine;
 
-public abstract class TimeManager : SingletonMonoBehaviour<TimeManager>
+class TimeManager : MonoBehaviour
 {
     /// <summary>
     /// 終わった時のScoreに加算する時間
@@ -18,6 +17,7 @@ public abstract class TimeManager : SingletonMonoBehaviour<TimeManager>
     /// 分
     /// </summary>
     public float min { get; set; }
+    [SerializeField] GameObject time = null;
     void Start()
     {
         second = 0.0f;

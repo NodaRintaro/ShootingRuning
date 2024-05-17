@@ -18,7 +18,7 @@ class HPManager : SingletonMonoBehaviour<HPManager>
         _gameManagerSample = GameManagerSample.GetInstancs;
         _hp = _gameManagerSample.Life;
         time = _gameManagerSample.Time;
-    }//hpの初期化
+    }//hp初期化
 
     void Damage(int damage)
     {

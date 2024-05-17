@@ -6,13 +6,15 @@ using UnityEngine;
 
 class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
+    GameManagerSample _gameManagerSample;    
     /// <summary>
     /// 合計のScore
     /// </summary>
     public int Score { get; set; }
     void Start()
     {
-        Score = 0;
+        _gameManagerSample = GameManagerSample.GetInstancs;
+        Score = _gameManagerSample.Score;
     }//Scoreの初期化
 
     public void Hit(int enemyPoint)

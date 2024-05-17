@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Singleton
 {
     /// <summary>
-    /// シングルトン基底クラス(MonoBehaviour継承)
+    /// シングルトンの基底クラス(MonoBehaviour継承)
     /// </summary>
     public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : SingletonMonoBehaviour<T>
     {

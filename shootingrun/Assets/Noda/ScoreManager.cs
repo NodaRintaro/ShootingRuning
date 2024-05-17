@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Singleton;
 using UnityEngine;
 
-class ScoreManager : MonoBehaviour
+class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
     GameManagerSample _gameManagerSample;    
     /// <summary>

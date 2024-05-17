@@ -8,7 +8,7 @@ class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
     GameManagerSample _gameManagerSample;    
     /// <summary>
-    /// 合計のScore
+    /// 合計Score
     /// </summary>
     public int Score { get; set; }
     void Start()

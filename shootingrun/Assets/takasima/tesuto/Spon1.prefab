@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8921695066576729530}
   - component: {fileID: 7546966063761572824}
   m_Layer: 0
-  m_Name: Spon
+  m_Name: Spon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

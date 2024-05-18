@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    float _timer;
-    void Update()
+    private void OnBecameInvisible()
     {
-        _timer += Time.deltaTime;
-        if (_timer > 2)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(this.gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)

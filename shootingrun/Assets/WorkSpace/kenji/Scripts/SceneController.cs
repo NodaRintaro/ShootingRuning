@@ -2,21 +2,23 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class SceneController : MonoBehaviour
 {
     public Collider ChangeScene;
     public Button StartScene;
+    public string Scene;//移行先のゲームシーンをinspectorに書きなさい
     public Button GameScene;
-    public string Scene;
+    public string Scene2;
+    public Button OnotherScene;//アタッチはボタンにしてるけど変えられる
+    public string Scene3;
     [SerializeField] private GameObject _loadingUI;
     [SerializeField] private Slider _slider;
 
     public void MoveA()
     {
         SceneManager.LoadScene(Scene);
-    }
+    }//スタート画面だからの
 
     public void MoveLoadNextSceneB()
     {
@@ -42,7 +44,7 @@ public class SceneController : MonoBehaviour
 
     public void MoveB()
     {
-        SceneManager.LoadScene(Scene);
+        SceneManager.LoadScene(Scene2);
     }
 
     ////コライダ―に入ったらscene切替

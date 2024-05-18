@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject _mouseCursor;
     [SerializeField] GameObject _bullet;
     [SerializeField] float _bulletSpeed = 5;
     [SerializeField] float _interval = 1;
@@ -11,6 +10,11 @@ public class PlayerShooting : MonoBehaviour
     Vector3 _cursorDistance;
     float _timer;
     bool _isClick;
+
+    void Awake()
+    {
+        _timer = 20;
+    }
 
     void Start()
     {
@@ -20,9 +24,7 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         _mousePos = Input.mousePosition;                            //マウスカーソルの座標を取得して変数に入れる
-        _mousePos = Camera.main.ScreenToWorldPoint(_mousePos);      
-        _mousePos.z = 0;
-        _mouseCursor.transform.position = _mousePos;
+        _mousePos = Camera.main.ScreenToWorldPoint(_mousePos);
         if (_isClick)
         {
             if (Input.GetButton("Fire1"))
@@ -31,8 +33,9 @@ public class PlayerShooting : MonoBehaviour
                 if (_bullet.GetComponent<Rigidbody2D>() != null)
                 {
                     Rigidbody2D bulletRigidbody2D = bullet.GetComponent<Rigidbody2D>();                         //_bulletのRigidbodyを取得
-                    _cursorDistance = _mouseCursor.transform.position - transform.position;                     //マウスカーソルとプレイヤーのベクトルを取得
-                    bulletRigidbody2D.AddForce(_cursorDistance * _bulletSpeed,ForceMode2D.Impulse);           //_bulletのRigidbodyを使って_bulletを飛ばす
+                    //Vector3.Scaleは2つのベクトルのxyzをかけている
+                    _cursorDistance = Vector3.Scale((_mousePos - transform.position), new Vector3(1, 1, 0)).normalized;
+                    bulletRigidbody2D.velocity = _cursorDistance * _bulletSpeed;
                 }
                 else
                 {

@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
     {
         if (_oldScoreValue < _gameManagerSample.Score)
         {
-            _oldScoreValue += (int)(Time.deltaTime *(_ScoreValueDiff));
+            _oldScoreValue += (int)(Time.deltaTime *(_ScoreValueDiff < 100?300:_ScoreValueDiff));
         }
         else if (_oldScoreValue >= _gameManagerSample.Score)
         {

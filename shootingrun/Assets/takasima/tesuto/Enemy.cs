@@ -14,21 +14,21 @@ public class Enemy : MonoBehaviour
     [Header("スコアにプラスする値"), SerializeField] int _PlusScoer = 5;
     private HPManager _hpMg;
     private ScoreManager _score;
+    Rigidbody _rb;
     // Start is called before the first frame update
-    
+
     void Start()
     {
-        _transformposition = this.transform.position;
+        _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         _timer += Time.deltaTime;
-       Vector2 pos =  _transformposition  +  new Vector2 ( (-1)* _timer* _speed, 0); 
-      _transformposition = pos;
+        transform.position -= new Vector3(Time.deltaTime * _speed, 0);
         //左に移動
-        if(this.transform.position.x < -120f)
+        if (this.transform.position.x < -120f)
         {
             Destroy(this.gameObject);
         }
@@ -39,11 +39,12 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _hpMg._hp = 1; 
+            HPManager.Instantiate.Hp(_MinusHp);
+            Destroy(this.gameObject);
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            _score.Score = _PlusScoer;
+            ScoreManager.Instantiate.Hit(_PlusScoer);
             Destroy(this.gameObject);
         }
     }

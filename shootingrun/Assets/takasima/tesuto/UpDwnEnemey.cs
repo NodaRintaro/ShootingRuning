@@ -10,7 +10,7 @@ public class UpDwnEnemey : MonoBehaviour
     [SerializeField] float _speedX = 5f;
     Vector2 _initailPosition;
     float _timer;
-    float _HpEnemey;
+
     [Header("Hpをどのぐらい減少させるかの値"), SerializeField] int _MinusHp = 1;
     [Header("スコアにプラスする値"), SerializeField] int _PlusScoer = 5;
     private HPManager _hpMg;
@@ -28,7 +28,7 @@ public class UpDwnEnemey : MonoBehaviour
         Vector2 pos = _initailPosition + new Vector2(posX, posY);
         transform.position = pos;
         //左に移動
-        if (this.transform.position.x < -120f)
+        if (this.transform.position.x < -100f)
         {
             Destroy(this.gameObject);
         }
@@ -38,11 +38,11 @@ public class UpDwnEnemey : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _hpMg._hp = 1;
+            HPManager.Instantiate.Hp(_MinusHp);
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            _score.Score = _PlusScoer;
+            ScoreManager.Instantiate.Hit(_PlusScoer);
             Destroy(this.gameObject);
         }
     }

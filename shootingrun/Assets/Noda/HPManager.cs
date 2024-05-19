@@ -20,7 +20,7 @@ class HPManager : SingletonMonoBehaviour<HPManager>
         time = _gameManagerSample.Time;
     }//hp初期化
 
-    void Damage(int damage)
+    public void Damage(int damage)
     {
         _hp -= damage;
         if (_hp == 0)

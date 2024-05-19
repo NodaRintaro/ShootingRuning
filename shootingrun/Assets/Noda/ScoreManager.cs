@@ -14,11 +14,10 @@ class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     void Start()
     {
         _gameManagerSample = GameManagerSample.GetInstancs;
-        Score = _gameManagerSample.Score;
     }//Scoreの初期化
 
     public void Hit(int enemyPoint)
     {
-        Score += enemyPoint;
+        _gameManagerSample.Score += enemyPoint;
     }//Enemy撃破時にScoreを加算する
 }

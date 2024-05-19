@@ -16,16 +16,14 @@ class HPManager : SingletonMonoBehaviour<HPManager>
     void Start()
     {
         _gameManagerSample = GameManagerSample.GetInstancs;
-        _hp = _gameManagerSample.Life;
-        time = _gameManagerSample.Time;
     }//hp初期化
 
     public void Damage(int damage)
     {
-        _hp -= damage;
-        if (_hp == 0)
+        _gameManagerSample.Life -= damage;
+        if (_gameManagerSample.Life == 0)
         {
-            int _time = (int)time;
+            int _time = (int)_gameManagerSample.Time;
             ScoreManager.Instance.Hit(_time);
         }
     }//ダメージを受けたときにhpを減らす

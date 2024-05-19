@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] GameObject _bullet;
+    [SerializeField] GameObject _target;
     [SerializeField] float _bulletSpeed = 5;
     [SerializeField] float _interval = 1;
     Vector3 _mousePos;          //マウスカーソルの座標を入れる変数
@@ -25,6 +26,8 @@ public class PlayerShooting : MonoBehaviour
     {
         _mousePos = Input.mousePosition;                            //マウスカーソルの座標を取得して変数に入れる
         _mousePos = Camera.main.ScreenToWorldPoint(_mousePos);
+        _mousePos.z = 0;
+        _target.transform.position = _mousePos;
         if (_isClick)
         {
             if (Input.GetButton("Fire1"))

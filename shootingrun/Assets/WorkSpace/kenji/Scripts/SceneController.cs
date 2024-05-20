@@ -18,7 +18,7 @@ public class SceneController : MonoBehaviour
     public void MoveA()
     {
         SceneManager.LoadScene(Scene);
-    }//スタート画面だからの
+    }//一個目の移行先シーン
 
     public void MoveLoadNextSceneB()
     {

@@ -20,4 +20,22 @@ public class SoundManager : MonoBehaviour
             return instance;
         }
     }
+
+    [SerializeField] AudioClip _shot;
+    [SerializeField] AudioClip _dead;
+    [SerializeField] AudioClip _hit;
+    AudioSource _audioSource;
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    void AudioSourcePlay(AudioClip audioClip)
+    {
+        _audioSource.PlayOneShot(audioClip);
+    }
+
+    public void Shot() => AudioSourcePlay(_shot);
+    public void Hit() => AudioSourcePlay(_hit);
+    public void Dead () => AudioSourcePlay(_dead);
 }

@@ -39,12 +39,12 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            HPManager.Instantiate.Hp(_MinusHp);
+            HPManager.Instance.Hp(_MinusHp);
             Destroy(this.gameObject);
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            ScoreManager.Instantiate.Hit(_PlusScoer);
+            ScoreManager.Instance.Hit(_PlusScoer);
             Destroy(this.gameObject);
         }
     }

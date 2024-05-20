@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Singleton;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class HPManager : SingletonMonoBehaviour<HPManager>
 {
-    GameManagerSample _gameManagerSample;
+    
+    GameManagerSample _gameManager;
     
     /// <summary>
     /// プレイヤーのライフポイント
@@ -15,16 +17,17 @@ class HPManager : SingletonMonoBehaviour<HPManager>
     public float time;
     void Start()
     {
-        _gameManagerSample = GameManagerSample.GetInstancs;
+        _gameManager = GameManagerSample.GetInstancs;
     }//hp初期化
 
     public void Damage(int damage)
     {
-        _gameManagerSample.Life -= damage;
-        if (_gameManagerSample.Life == 0)
+        _gameManager.Life -= damage;
+        if (_gameManager.Life <= 0)
         {
-            int _time = (int)_gameManagerSample.Time;
+            int _time = (int)_gameManager.Time;
             ScoreManager.Instance.Hit(_time);
+            SceneManager.LoadScene("GameOver");
         }
     }//ダメージを受けたときにhpを減らす
 }

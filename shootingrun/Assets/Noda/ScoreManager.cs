@@ -6,18 +6,18 @@ using UnityEngine;
 
 class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
-    GameManagerSample _gameManagerSample;    
+    GameManagerSample _gameManager;
     /// <summary>
     /// 合計Score
     /// </summary>
     public int Score { get; set; }
     void Start()
     {
-        _gameManagerSample = GameManagerSample.GetInstancs;
+        _gameManager = GameManagerSample.GetInstancs;
     }//Scoreの初期化
 
     public void Hit(int enemyPoint)
     {
-        _gameManagerSample.Score += enemyPoint;
+        _gameManager.Score += enemyPoint;
     }//Enemy撃破時にScoreを加算する
 }

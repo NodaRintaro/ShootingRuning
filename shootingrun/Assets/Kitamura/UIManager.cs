@@ -67,7 +67,6 @@ public class UIManager : MonoBehaviour
             ScoreInterpolation();
         }
     }
-
     void Damage()
     {
         _life = _lifes[_oldLifeValue - 1];
@@ -97,6 +96,5 @@ public class UIManager : MonoBehaviour
         _scoreText.text = $"スコア {_oldScoreValue:000000}";
         //time表示0埋め２桁（タイム　00:00）
         _timeText.text = $"タイム　{_gameManagerSample.Time:00}:{(int)(_gameManagerSample.Time % 1 * 100):00}";
-
     }
 }
